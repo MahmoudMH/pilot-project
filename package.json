@@ -1,0 +1,70 @@
+{
+  "name": "pilot-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack && babel src --out-dir lib --copy-files",
+    "start": "node \"./lib/server\"",
+    "dev:build": "webpack --mode=production",
+    "dev": "nodemon --exec babel-node ./src/server/",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@feathersjs/express": "^1.2.7",
+    "@feathersjs/feathers": "^3.2.3",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "es2015": "0.0.0",
+    "express": "^4.16.4",
+    "feathers-knex": "^4.0.0",
+    "knex": "^0.15.2",
+    "mobx": "^5.5.1",
+    "mobx-react": "^5.3.4",
+    "mysql": "^2.16.0",
+    "react-router-dom": "^4.3.1",
+    "webpack": "^4.22.0"
+  },
+  "devDependencies": {
+    "@babel/preset-es2015": "*",
+    "babel-cli": "*",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-decorators-legacy": "*",
+    "babel-plugin-transform-object-rest-spread": "*",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-mobx": "*",
+    "babel-preset-react": "*",
+    "classnames": "^2.2.6",
+    "css-loader": "^1.0.0",
+    "eslint": "^5.7.0",
+    "eslint-plugin-react": "^7.11.1",
+    "file-loader": "^2.0.0",
+    "mobx-react-devtools": "^6.0.3",
+    "nodemon": "^1.18.4",
+    "prop-types": "^15.6.2",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.1",
+    "style-loader": "^0.23.1",
+    "webpack-cli": "*"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "es2015"
+          ]
+        }
+      ]
+    ]
+  }
+}
