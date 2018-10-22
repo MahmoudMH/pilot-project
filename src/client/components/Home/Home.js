@@ -42,6 +42,7 @@ class Home extends React.Component {
           "name" : event.target[0].value,
           "description": event.target[1].value
       })
+      document.getElementsByTagName('form')[0].reset();
     }
 
     onClickList = listId => {

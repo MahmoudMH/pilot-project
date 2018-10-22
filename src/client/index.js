@@ -8,7 +8,6 @@ import Page404 from './components/page404';
 import './index.css';
 
 import ListStore from './stores/ListStore.js'
-import DevTools from "mobx-react-devtools";
 
 let store = new ListStore();
 
@@ -16,7 +15,6 @@ ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <div class='app'>
-        <DevTools />
         <Switch>
           <Route exact path='/' component={Home} />
           <Route component={Page404} />
