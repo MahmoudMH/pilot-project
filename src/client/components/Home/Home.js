@@ -7,6 +7,7 @@ import List from '../List/List';
 import ListDescription from '../ListDescription/ListDescription';
 
 import './Home.css';
+// this store is the store come from bigstore to use it in the component
 let store = new ListStore();
 
 @observer(['store'])
@@ -20,14 +21,13 @@ class Home extends React.Component {
           isLoading: false
         }
     }
-
+    // this function handle the form submit and setState component when list added immediate
     onSubmit = event => {
       event.preventDefault();
       const nameList = event.target[0].value.trim();
       const description = event.target[1].value.trim();
       store.addList(nameList, description);
       const newList = store.getAllList();
-
       this.setState({
         lists: [
           ...this.state.lists,
@@ -44,11 +44,13 @@ class Home extends React.Component {
       })
       document.getElementsByTagName('form')[0].reset();
     }
-
+    // thin function run when the list is clicked and take the list id from the parent
     onClickList = listId => {
       this.setState({
         idList: listId
       });
+
+      // fetch api for list by id
       fetch('/api/v1/lists/' + listId , {
         method: "GET",
         headers:{
@@ -63,7 +65,9 @@ class Home extends React.Component {
       })
       .catch(err => console.error(err))
     }
+    // first function invoked immediately after a component is mounted
     componentDidMount(){
+      //fetch api fore show all the lists from dbs
       fetch('/api/v1/lists', {
         method: 'GET',
         headers: {

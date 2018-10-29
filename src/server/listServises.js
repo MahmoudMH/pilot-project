@@ -1,3 +1,5 @@
+/* it's not part form the project but i used it to coustomize some methods */ 
+
 const feathers = require('@feathersjs/feathers');
 import service from 'feathers-knex'
 

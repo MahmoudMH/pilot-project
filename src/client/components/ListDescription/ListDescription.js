@@ -1,5 +1,6 @@
 import React from 'react';
 
+// state less Component for only show the description of list
 const ListDescription = (prop) =>{
   const {dataList} = prop;
   return(

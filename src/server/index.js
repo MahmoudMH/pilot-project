@@ -1,11 +1,16 @@
-// import express from 'express';
 import path from 'path';
 import logger from './middleware/logger';
 import feathers from '@feathersjs/feathers'
 import express from '@feathersjs/express'
 import knex from 'knex'
 import service from 'feathers-knex'
+// list service to coustomize any service
 import listServises from './listServises';
+// database information, client for type of db like mysql, sqlite and so on
+// connection depends on your db Server ip
+// set your user name and password for the db user.
+// database is field for the name of the database you may need to create with the same name "pilotdb"
+// or you can change the db name if you have one.
 const db = knex({
   client: 'mysql',
   connection: {
@@ -16,6 +21,8 @@ const db = knex({
   }
 });
 
+// the comment line if i need to deploy on some Server have diffrent server port.
+// const PORT = process.env.PORT | 3000;
 const PORT = 3000;
 
 const app = express(feathers());
@@ -26,6 +33,7 @@ app.use(express.urlencoded({ extended: true }));
 // enable REST API
 app.configure(express.rest());
 
+// this service to handle any request start from /api/v1/lists
 app.use('/api/v1/lists', service({
   Model: db,
   name: 'lists'
@@ -33,6 +41,15 @@ app.use('/api/v1/lists', service({
 
 
 app.use(express.errorHandler());
+app.use(logger);
+app.use(express.static(path.join(__dirname, '../../public')));
+app.use('/*', express.static(path.join(__dirname,'..','..','public','index.html')));
+
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}`);
+});
+
+
 
 // db.schema.dropTableIfExists('lists')
 //   .then(() => {
@@ -56,10 +73,3 @@ app.use(express.errorHandler());
 //     })
 //     .then(list => console.log("Insert List success", list))
 //   })
-
-app.use(logger);
-app.use(express.static(path.join(__dirname, '../../public')));
-
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
-});
